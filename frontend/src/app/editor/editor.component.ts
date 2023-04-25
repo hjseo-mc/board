@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {map} from "rxjs/operators";
 
 @Component({
@@ -13,9 +13,11 @@ export class EditorComponent implements OnInit {
   constructor(protected fb: FormBuilder) { }
 
   ngOnInit(): void {
+
+    //https://angular.io/api/forms/Validators (참고)
     this.editorForm = this.fb.group({
-      title: [""],
-      content: [""]
+      title: new FormControl("", [Validators.required]),
+      content: new FormControl("", [Validators.required])
     });
 
     this.editorForm.valueChanges.pipe(
@@ -29,7 +31,7 @@ export class EditorComponent implements OnInit {
     const controls = this.editorForm.controls;
 
     this.editorForm.setValue({
-      subject: controls.subject.value.trim(),
+      title: controls.title.value.trim(),
       content: controls.content.value.trim()
     });
     const value = this.editorForm.value;

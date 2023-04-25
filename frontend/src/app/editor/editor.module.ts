@@ -15,8 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     CommonModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule,
-    ListModule
+    ReactiveFormsModule
   ],
   exports: [
     EditorComponent

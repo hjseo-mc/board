@@ -8,10 +8,16 @@
   <tbody>
     <tr *ngFor="let item of items; let i = index">
       <td>{{ item.num }}</td>
-      <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td>
+      <!-- <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td> -->
+      <td (click)="openPost(item.num)">{{ item.title }}</td>
     </tr>
   </tbody>
 </table>
+
+child module: 
+<app-child>
+  test
+</app-child>
 
 <button (click)="createPost()">create</button>
 

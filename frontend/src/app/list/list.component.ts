@@ -29,11 +29,10 @@ export class ListComponent implements OnInit {
   }
 
   openPost(num: number ) : any {
-    console.log(num)
-    this.router.navigate(['post', num], {relativeTo: this.route})
+    this.router.navigate(['','post', num], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
   }
   createPost() : any {
-    this.router.navigate(['new'], {relativeTo: this.route})
+    this.router.navigate(['','new'], {relativeTo: this.route})
   }
 
 }

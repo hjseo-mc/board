@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { MainComponent } from "./main.component";
 import {ListModule} from "../list/list.module";
+import { PostModule } from '../post/post.module';
+import { EditorModule } from '../editor/editor.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +13,9 @@ import {ListModule} from "../list/list.module";
   imports: [
     CommonModule,
     RouterModule,
-    ListModule
+    ListModule,
+    PostModule,
+    EditorModule
   ],
   exports: [
     MainComponent

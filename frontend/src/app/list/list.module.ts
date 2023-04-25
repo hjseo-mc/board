@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list.component';
 import {RouterModule} from "@angular/router";
 import {PostModule} from "../post/post.module";
+import { ChildModule } from './child/child.module';
 
 
 
@@ -13,7 +14,7 @@ import {PostModule} from "../post/post.module";
   imports: [
     CommonModule,
     RouterModule,
-    PostModule
+    ChildModule
   ],
   exports: [
     ListComponent
