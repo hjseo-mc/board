@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -13,6 +15,7 @@ import javax.persistence.Id;
 public class Post {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String title;
     private String content;
@@ -22,8 +25,8 @@ public class Post {
         this.content = content;
     }
 
-    public static Post of(String title, String content){
-        return new Post(title, content);
+    public static Post of(Integer id, String title, String content){
+        return new Post(id, title, content);
     }
 
     public PostDto toDto(){

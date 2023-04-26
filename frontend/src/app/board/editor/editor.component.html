@@ -1,0 +1,9 @@
+<form [formGroup]="editorForm">
+  <fieldset class="mb-2">
+    <p class="control">
+      title: <input class="input" type="text" formControlName="title">
+    </p>
+    <textarea type="text" formControlName="content"></textarea>
+  </fieldset>
+  <button type="submit" (click)="save()">submit</button>
+</form>

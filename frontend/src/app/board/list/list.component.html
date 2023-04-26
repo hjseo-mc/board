@@ -1,4 +1,3 @@
-<app-nav></app-nav>
 <table class="table">
   <thead>
     <tr>
@@ -8,7 +7,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let post of posts; let i = index">
-      <td>{{ post.id }}</td>
+      <td>{{ i }}</td>
       <!-- <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td> -->
       <td (click)="openPost(post.id)">{{ post.title }}</td>
     </tr>
@@ -16,5 +15,4 @@
 </table>
 
 <button (click)="createPost()">create</button>
-<app-foot></app-foot>
 

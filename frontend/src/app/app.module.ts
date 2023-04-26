@@ -7,7 +7,7 @@ import {MainModule} from "./main/main.module";
 import {ApiGatewayService} from "./service/ApiGatewayService";
 import {HttpClientModule} from "@angular/common/http";
 import {CommonModule} from "@angular/common";
-import {ListModule} from "./list/list.module";
+import {ListModule} from "./board/list/list.module";
 import {FootModule} from "./common/foot/foot.module";
 import {NavModule} from "./common/nav/nav.module";
 
@@ -21,7 +21,9 @@ import {NavModule} from "./common/nav/nav.module";
     AppRoutingModule,
     MainModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    NavModule,
+    FootModule
   ],
   providers: [ApiGatewayService],
   exports: [],

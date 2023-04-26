@@ -25,10 +25,11 @@ export class PostService extends ApiGatewayService{
     return this.get('api/posts/' + id);
   }
   createPost(newPost: Post) {
-    return this.post('api/posts', newPost)
+    return this.post('api/posts/', newPost);
   }
-  updatePost(id: number, newPost: Post) {
-    return this.patch("api/posts/" + id, newPost)
+  updatePost(id: number, updatePost: Post) {
+    console.log(id, updatePost);
+    return this.post("api/posts/", updatePost)
   }
   deletePost(id: number) {
     return this.delete("api/posts/" + id)

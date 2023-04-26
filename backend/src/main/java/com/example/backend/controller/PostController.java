@@ -33,10 +33,10 @@ public class PostController {
         );
     }
 
-    @PostMapping("/api/posts/")
-    public ResponseEntity createPost(@RequestParam PostDto postDto) {
+    @PostMapping("/api/posts")
+    public ResponseEntity createPost(@RequestBody PostDto postDto) {
         return ResponseEntity.ok().body(
-            postRepository.save(Post.of(postDto.getTitle(), postDto.getContent()))
+            postRepository.save(Post.of(postDto.getId(), postDto.getTitle(), postDto.getContent()))
             .toDto()
         );
     }

@@ -1,22 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListComponent} from "./list/list.component";
+import {ListComponent} from "./board/list/list.component";
 import {MainComponent} from "./main/main.component";
-import {PostComponent} from "./post/post.component";
-import {EditorComponent} from "./editor/editor.component";
+import {PostComponent} from "./board/post/post.component";
+import {EditorComponent} from "./board/editor/editor.component";
 
 const routes: Routes = [
-  {
-    path: '',
-    children: [
-      {path: '',  component: MainComponent},
-      {path: 'posts', component: ListComponent},
-      {path: 'post/:id', component: PostComponent},
-      {path: 'posts/new', component: EditorComponent},
-      {path: "**", redirectTo: "**", pathMatch: 'full'}
-    ]
+    {path: '',  component: MainComponent},
+    {path: 'board',
+      children: [
+        {path: 'list', component: ListComponent},
+        {path: 'post/:id', component: PostComponent},
+        {path: 'new', component: EditorComponent},
+        {path: 'edit/:id', component: EditorComponent},
+        {path: "**", redirectTo: 'list', pathMatch: 'full'}
+      ]
   },
-  {path: "**", redirectTo: "", pathMatch: 'full'}
+  {path: "**", redirectTo: '', pathMatch: 'full'}
 ];
 
 @NgModule({

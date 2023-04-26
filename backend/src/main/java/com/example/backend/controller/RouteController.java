@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RouteController implements ErrorController {
     @RequestMapping("/{path:[^\\.]*}")
     public String redirect() {
-        return "/";
+        return "forward:/";
     }
     @Override
     public String getErrorPath(){

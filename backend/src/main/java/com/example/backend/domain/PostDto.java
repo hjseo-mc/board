@@ -8,9 +8,10 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-@JsonIgnoreProperties({ "id" })
+//@JsonIgnoreProperties({ "id" })
 @AllArgsConstructor
 public class PostDto implements Serializable {
+
     private Integer id;
     private String title;
     private String content;

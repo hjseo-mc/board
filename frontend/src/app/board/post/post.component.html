@@ -1,0 +1,6 @@
+<p> {{id }}</p>
+<p>title: {{ data?.title }} </p>
+<p>content: {{ data?.content }} </p>
+<button class="button" (click)="edit(id)">edit</button>
+<button class="button" (click)="delete()">delete</button>
+<button class="button" [routerLink]="'../'">return</button>
