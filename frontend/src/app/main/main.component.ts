@@ -14,7 +14,7 @@ export class MainComponent implements OnInit {
   }
 
   open(): any {
-    this.router.navigate(["list"], {relativeTo: this.route})
+    this.router.navigate(["posts"], {relativeTo: this.route})
   }
 
 }

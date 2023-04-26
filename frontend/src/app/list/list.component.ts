@@ -1,5 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
+import {PostService} from "../service/post.service";
+
+interface PreviewPost {
+  id: number,
+  title: string
+}
 
 @Component({
   selector: 'app-list',
@@ -8,7 +14,11 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class ListComponent implements OnInit {
 
-  constructor(public router: Router, private route: ActivatedRoute) { }
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private postService: PostService
+  ) { }
 
   @Input()
   data: any;
@@ -16,23 +26,17 @@ export class ListComponent implements OnInit {
   @Output()
   test: any = new EventEmitter();
 
-  items:any = [{
-    num: 1,
-    title: "a"
-  },
-    {
-    num: 2,
-    title: "b"
-  }];
+  posts: PreviewPost[] = []
 
   ngOnInit(): void {
+    this.postService.getList().toPromise()
+      .then((list: PreviewPost[]) => {this.posts = list})
+      .catch((error: any) => console.log(error))
   }
-
-  openPost(num: number ) : any {
-    this.router.navigate(['','post', num], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
+  openPost(id: number ) : any {
+    this.router.navigate(['','posts', id], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
   }
   createPost() : any {
-    this.router.navigate(['','new'], {relativeTo: this.route})
+    this.router.navigate(['','posts', 'new'], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
   }
-
 }

@@ -4,19 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MainModule} from "./main/main.module";
-import { PostComponent } from './post/post.component';
+import {ApiGatewayService} from "./service/ApiGatewayService";
+import {HttpClientModule} from "@angular/common/http";
+import {CommonModule} from "@angular/common";
+import {ListModule} from "./list/list.module";
+import {FootModule} from "./common/foot/foot.module";
+import {NavModule} from "./common/nav/nav.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MainModule
+    MainModule,
+    CommonModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [ApiGatewayService],
+  exports: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

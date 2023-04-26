@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ListComponent } from './list.component';
 import {RouterModule} from "@angular/router";
-import {PostModule} from "../post/post.module";
-import { ChildModule } from './child/child.module';
-
-
+import {PostService} from "../service/post.service";
+import {ApiGatewayService} from "../service/ApiGatewayService";
+import {NavModule} from "../common/nav/nav.module";
+import {FootModule} from "../common/foot/foot.module";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -14,10 +14,15 @@ import { ChildModule } from './child/child.module';
   imports: [
     CommonModule,
     RouterModule,
-    ChildModule
+    NavModule,
+    FootModule,
   ],
   exports: [
     ListComponent
+  ],
+  providers: [
+    ApiGatewayService,
+    PostService
   ]
 })
 export class ListModule { }

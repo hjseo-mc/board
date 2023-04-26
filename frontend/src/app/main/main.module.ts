@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from "@angular/router";
 import { MainComponent } from "./main.component";
-import {ListModule} from "../list/list.module";
-import { PostModule } from '../post/post.module';
+import { ListModule } from "../list/list.module";
 import { EditorModule } from '../editor/editor.module';
+import { NavModule } from "../common/nav/nav.module";
+import { FootModule } from "../common/foot/foot.module";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -14,8 +15,8 @@ import { EditorModule } from '../editor/editor.module';
     CommonModule,
     RouterModule,
     ListModule,
-    PostModule,
-    EditorModule
+    FootModule,
+    NavModule
   ],
   exports: [
     MainComponent

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, RouterModule} from "@angular/router";
+import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 
 @Component({
   selector: 'app-post',
@@ -8,12 +8,16 @@ import {ActivatedRoute, RouterModule} from "@angular/router";
 })
 export class PostComponent implements OnInit {
 
-  constructor(private router: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   id:number = 0
 
   ngOnInit(): void {
-    this.router.params.subscribe((data)=> this.id = data.id);
+    this.route.params.subscribe((data)=> this.id = data.id);
+  }
+
+  edit(id: number) {
+    this.router.navigate(['editor',id], {relativeTo: this.route})
   }
 
 }

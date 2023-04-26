@@ -10,10 +10,10 @@ const routes: Routes = [
     path: '',
     children: [
       {path: '',  component: MainComponent},
-      {path: 'list', component: ListComponent},
+      {path: 'posts', component: ListComponent},
       {path: 'post/:id', component: PostComponent},
-      {path: 'new', component: EditorComponent},
-      {path: "**", redirectTo: "list", pathMatch: 'full'}
+      {path: 'posts/new', component: EditorComponent},
+      {path: "**", redirectTo: "**", pathMatch: 'full'}
     ]
   },
   {path: "**", redirectTo: "", pathMatch: 'full'}

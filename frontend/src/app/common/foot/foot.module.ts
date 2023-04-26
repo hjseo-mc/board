@@ -1,18 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ChildComponent } from './child.component';
-
-
+import {FootComponent} from "./foot.component";
 
 @NgModule({
   declarations: [
-    ChildComponent
+    FootComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
-    ChildComponent
+    FootComponent
   ]
 })
-export class ChildModule { }
+export class FootModule { }
