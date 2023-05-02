@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <div class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item" href="#">Home</a>
+      <a class="navbar-item" (click)="isLogin ? logoutEvent() : loginEvent()">
+        {{ isLogin ? 'Logout' : 'Login' }}
+      </a>
+    </div>
+  </div>
+</nav>

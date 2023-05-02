@@ -1,0 +1,11 @@
+<div class="main-content">
+
+<app-navbar (logInOut)="showText($event)"></app-navbar>
+  {{ text }}
+<router-outlet></router-outlet>
+
+  <div class="container-fluid">
+    <app-footer></app-footer>
+  </div>
+
+</div>

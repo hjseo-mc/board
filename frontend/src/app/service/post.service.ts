@@ -1,15 +1,10 @@
 import { Injectable } from '@angular/core';
-import {ApiGatewayService} from "./ApiGatewayService";
+import {ApiGatewayService} from "./api-gateway.service";
 import {HttpClient} from "@angular/common/http";
 import { tap } from 'rxjs/operators'
 import {Observable, Subscription} from "rxjs";
+import {Post} from "../model/Post";
 
-interface Post
-{
-  id?: number,
-  title: string,
-  content: string
-}
 @Injectable({
   providedIn: 'root'
 })
@@ -18,19 +13,22 @@ export class PostService extends ApiGatewayService{
   constructor(http: HttpClient) {
     super(http);
   }
-  getList() : any  {
+  getAll() : any  {
     return this.get('api/posts');
   }
-  getPost(id: number) : Observable<Post> {
+  getOneById(id: number) : Observable<Post> {
     return this.get('api/posts/' + id);
   }
-  createPost(newPost: Post) {
-    return this.post('api/posts', newPost)
+  getAllByBoardId(boardId: number) : Observable<any> {
+    return this.get('api/boards/' + boardId + '/posts');
   }
-  updatePost(id: number, newPost: Post) {
+  createOne(newPost: Post) {
+    return this.post('api/posts/', newPost)
+  }
+  updateOne(id: number, newPost: Post) {
     return this.patch("api/posts/" + id, newPost)
   }
-  deletePost(id: number) {
+  deleteOne(id: number) {
     return this.delete("api/posts/" + id)
   }
 

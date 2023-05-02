@@ -1,26 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListComponent} from "./list/list.component";
-import {MainComponent} from "./main/main.component";
-import {PostComponent} from "./post/post.component";
-import {EditorComponent} from "./editor/editor.component";
+import {MainLayoutComponent} from "./layout/main/main-layout.component";
+import {CommonModule} from "@angular/common";
+import {BrowserModule} from "@angular/platform-browser";
 
 const routes: Routes = [
   {
     path: '',
+    component: MainLayoutComponent,
     children: [
-      {path: '',  component: MainComponent},
-      {path: 'posts', component: ListComponent},
-      {path: 'post/:id', component: PostComponent},
-      {path: 'posts/new', component: EditorComponent},
-      {path: "**", redirectTo: "**", pathMatch: 'full'}
+      {
+        path: '',
+        //  { path: '',     component: HomeComponent },
+        //  { path: 'board',    component: PostListComponent },
+        loadChildren: () => import('./layout/main/main-layout.module')
+          .then(m => m.MainLayoutModule)
+      },
     ]
   },
-  {path: "**", redirectTo: "", pathMatch: 'full'}
+  // 그 외 모든 경로는 홈으로 리다이렉트
+  {
+    path: "**", redirectTo: "",
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    CommonModule,
+    BrowserModule,
+    RouterModule.forRoot(routes)
+  ],
+  exports: []
 })
 export class AppRoutingModule { }
