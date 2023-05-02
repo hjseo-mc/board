@@ -1,7 +1,6 @@
-package com.example.backend.domain;
+package com.example.backend.domain.post;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -14,8 +13,5 @@ public class PostDto implements Serializable {
     private Integer id;
     private String title;
     private String content;
-
-    public Post toEntity() {
-        return new Post(id, title, content);
-    }
+    private Integer boardId;
 }

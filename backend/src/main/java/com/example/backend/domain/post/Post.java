@@ -1,5 +1,6 @@
-package com.example.backend.domain;
+package com.example.backend.domain.post;
 
+import com.example.backend.domain.board.Board;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,17 +18,20 @@ public class Post {
     private String title;
     @Column
     private String content;
+    @ManyToOne @JoinColumn(name = "board_id")
+    private Board board;
 
-    private Post(String title, String content) {
+    private Post(String title, String content, Board board) {
         this.title = title;
         this.content = content;
+        this.board = board;
     }
 
-    public static Post of(String title, String content){
-        return new Post(title, content);
+    public static Post of(String title, String content, Board board){
+        return new Post(title, content, board);
     }
 
-    public PostDto toDto(){
-        return new PostDto(id, title, content);
+    public PostDto toResponse(){
+        return new PostDto(id, title, content, board.getId());
     }
 }
