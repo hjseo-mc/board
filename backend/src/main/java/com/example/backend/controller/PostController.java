@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,12 +33,14 @@ public class PostController {
     public ResponseEntity<?> getOne(@PathVariable Integer id) {
         return ResponseEntity.ok().body(
             postRepository.findById(id)
-            .map(Post::toResponse)
+            .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."))
+            .toResponse()
         );
     }
 
     @PostMapping("/api/posts/")
     public ResponseEntity<?> create(@RequestBody PostDto postDto) {
+        System.out.println("postDto: " + postDto);
         return ResponseEntity.ok().body(
             postRepository.save(
                 Post.of(
@@ -46,6 +49,18 @@ public class PostController {
                     boardRepository.getOne(postDto.getBoardId())
             ))
             .toResponse()
+        );
+    }
+
+    @PatchMapping("/api/posts/{id}")
+    public ResponseEntity<?> update(@PathVariable Integer id, @RequestBody PostDto postDto) {
+        System.out.println("update with " + postDto);
+        Post post = postRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다."));
+        post.update(postDto.getTitle(), postDto.getContent());
+        System.out.println("updated post: " + post);
+        return ResponseEntity.ok().body(
+            postRepository.save(post).toResponse()
         );
     }
 

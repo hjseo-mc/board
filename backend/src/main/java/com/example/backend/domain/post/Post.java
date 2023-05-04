@@ -27,6 +27,11 @@ public class Post {
         this.board = board;
     }
 
+    public void update(String title, String content){
+        this.title = title;
+        this.content = content;
+    }
+
     public static Post of(String title, String content, Board board){
         return new Post(title, content, board);
     }

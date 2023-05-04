@@ -27,15 +27,15 @@ export class HomeComponent implements OnInit {
   }
 
   openBoard(id?: number) : any {
-    this.router.navigate(['','boards', id], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
+    this.router.navigate(['','boards', id], {relativeTo: this.route})
   }
   createBoard() : any {
     const board =  {
-      title: "New Board",
+      title: "Board",
       description: "New Board Description"
     }
     this.boardService.createOne(board).toPromise().then((data: any) => {
-      this.router.navigate(['','boards', data.id], {relativeTo: this.route}) // ['path1', 'path2'].join("/")
+      this.router.navigate(['','boards', data.id], {relativeTo: this.route})
     })
   }
 }

@@ -1,11 +1,14 @@
 export interface Post {
-  id?: number,
   title: string,
   content: string,
   boardId: number
 }
 
-export const MockPosts: Post[] = [
+export interface PreloadPost extends Post {
+  id: number
+}
+
+export const MockPosts: PreloadPost[] = [
   {
     id: 1,
     title: "title1",

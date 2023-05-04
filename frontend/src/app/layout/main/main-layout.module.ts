@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import {CommonModule} from "@angular/common";
-import {MainLayoutRoutes} from "./main-layout.routing";
+import {MainLayoutRoutes, MainLayoutRoutingModule} from "./main-layout.routing.module";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import {BoardModule} from "../../pages/board/board.module";
@@ -15,12 +15,10 @@ import {HomeModule} from "../../pages/home/home.module";
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(MainLayoutRoutes),
+    MainLayoutRoutingModule,
     FormsModule,
     ComponentsModule,
     HttpClientModule,
-    BoardModule,
-    HomeModule,
   ],
 })
 

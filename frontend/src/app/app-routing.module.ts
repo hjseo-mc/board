@@ -8,15 +8,8 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    children: [
-      {
-        path: '',
-        //  { path: '',     component: HomeComponent },
-        //  { path: 'board',    component: PostListComponent },
-        loadChildren: () => import('./layout/main/main-layout.module')
-          .then(m => m.MainLayoutModule)
-      },
-    ]
+    loadChildren: () => import('./layout/main/main-layout.module')
+      .then(m => m.MainLayoutModule)
   },
   // 그 외 모든 경로는 홈으로 리다이렉트
   {
