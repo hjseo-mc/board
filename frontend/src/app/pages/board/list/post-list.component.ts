@@ -23,14 +23,14 @@ export class PostListComponent implements OnInit {
   ) { }
 
   @Input() data: any;
-
   @Output() test: any = new EventEmitter();
 
   posts: PreviewPost[] = []
 
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
-      if(typeof param.boardId === "number") this.boardId = param.boardId;
+      this.boardId = param.boardId;
+      console.log(this.boardId)
     })
     this.postService.getAllByBoardId(this.boardId).toPromise()
       .then((list: PreviewPost[]) => {this.posts = list})
@@ -39,9 +39,11 @@ export class PostListComponent implements OnInit {
   openPost(id: number) : any {
     console.log(id)
     console.log(this.boardId)
-    this.router.navigate(['','boards',this.boardId,'posts', id], {relativeTo: this.route})
+    this.router.navigate(['','boards',this.boardId,'posts', id, 'view'])
   }
   createPost() : any {
-    this.router.navigate(['','boards',this.boardId,'posts','new'], {relativeTo: this.route})
+    console.log(this.boardId)
+    this.router.navigate(['','boards',this.boardId,'posts','new'])
+      .catch((error: any) => console.log(error))
   }
 }

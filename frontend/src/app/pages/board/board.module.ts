@@ -2,26 +2,25 @@ import {NgModule} from "@angular/core";
 import {HomeComponent} from "../home/home.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
-import {MainLayoutRoutes} from "../../layout/main/main-layout.routing";
+import {MainLayoutRoutes} from "../../layout/main/main-layout.routing.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import {BoardRoutes} from "./board.routing";
+import {BoardRoutes, BoardRoutingModule} from "./board-routing.module";
 import {PostListComponent} from "./list/post-list.component";
 import {PostEditorComponent} from "./editor/post-editor.component";
 import {PostViewComponent} from "./view/post-view.component";
+import {PostEditorModule} from "./editor/post-editor.module";
 
 
 @NgModule({
   declarations: [
     PostListComponent,
-    PostEditorComponent,
-    PostViewComponent
+    PostViewComponent,
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(BoardRoutes),
-    FormsModule,
-    ReactiveFormsModule,
+    PostEditorModule,
+    BoardRoutingModule,
   ],
 })
 export class BoardModule {}

@@ -1,9 +1,9 @@
-<form [formGroup]="editorForm">
+<form [formGroup]="editorForm" (ngSubmit)="submit()">
   <fieldset class="mb-2">
     <p class="control">
       title: <input class="input" type="text" formControlName="title" [value]="'title'">
     </p>
-    <textarea type="text" formControlName="content" [value]="'content'"></textarea>
+    content: <input type="text" formControlName="content" [value]="'content'">
   </fieldset>
-  <button type="submit" (click)="save()">submit</button>
+  <button type="submit">submit</button>
 </form>
