@@ -62,10 +62,16 @@ export class PostEditorComponent implements OnInit {
       boardId: boardId.value.trim(),
     };
 
-    if (this.postId) { this.postService.updateOne(this.postId, { id: this.postId, ...values }) }
-    else { this.postService.createOne(values).subscribe((data) => { this.postId = data.id; });
+    if (this.postId) {
+      this.postService.updateOne(this.postId, { id: this.postId, ...values })
     }
-    this.router.navigate(['','boards', this.boardId, 'posts', this.postId, 'view'])
+    else {
+      this.postService.createOne(values).subscribe((data) => {
+        this.postId = data.id;
+        this.router.navigate(['','boards', this.boardId, 'posts', this.postId, 'view'])
+      });
+    }
+
   }
 
   getPostData(id: number): PreloadPost {

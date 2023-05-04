@@ -38,7 +38,7 @@ public class PostController {
         );
     }
 
-    @PostMapping("/api/posts/")
+    @PostMapping("/api/posts")
     public ResponseEntity<?> create(@RequestBody PostDto postDto) {
         System.out.println("postDto: " + postDto);
         return ResponseEntity.ok().body(

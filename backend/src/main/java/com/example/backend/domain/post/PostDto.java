@@ -1,6 +1,7 @@
 package com.example.backend.domain.post;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -8,6 +9,7 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 public class PostDto implements Serializable {
     private Integer id;

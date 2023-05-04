@@ -24,7 +24,7 @@ export class PostService extends ApiGatewayService{
     return this.get('api/boards/' + boardId + '/posts');
   }
   createOne(newPost: Post) {
-    console.log(newPost)
+    console.log('createOne: ', newPost)
     return this.post('api/posts', newPost)
   }
   updateOne(id: number, newPost: PreloadPost) {

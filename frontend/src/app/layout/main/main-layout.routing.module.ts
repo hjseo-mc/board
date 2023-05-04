@@ -6,7 +6,7 @@ import {NgModule} from "@angular/core";
 export const MainLayoutRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent,
+    component: HomeComponent, data: {title: 'Home'},
     loadChildren: () => import('../../pages/home/home.module')
       .then(m => m.HomeModule)
   },
