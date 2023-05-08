@@ -43,7 +43,7 @@ public class BoardController {
         );
     }
 
-    @PostMapping("/api/boards/")
+    @PostMapping("/api/boards")
     public ResponseEntity<?> create(@RequestBody BoardDto boardDto) {
         return ResponseEntity.ok().body(
                 boardRepository.save(Board.of(boardDto.getTitle(), boardDto.getDescription()))

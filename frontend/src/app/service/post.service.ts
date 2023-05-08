@@ -3,7 +3,7 @@ import {ApiGatewayService} from "./api-gateway.service";
 import {HttpClient} from "@angular/common/http";
 import { tap } from 'rxjs/operators'
 import {Observable, Subscription} from "rxjs";
-import {Post, PreloadPost} from "../model/Post";
+import {Post, PreloadedPost} from "../model/Post";
 
 @Injectable({
   providedIn: 'root'
@@ -14,25 +14,27 @@ export class PostService extends ApiGatewayService{
     super(http);
   }
   getAll() : any  {
-    return this.get('api/posts');
+    return this.get('/api/posts');
   }
-  getOneById(id: number) : Observable<PreloadPost> {
-    console.log('getOneById: ', id)
-    return this.get('api/posts/' + id);
+  getOneById(id: number) : Observable<PreloadedPost> {
+    console.log('[PostService] getOneById(id=', id, ')')
+    return this.get('/api/posts/' + id);
   }
   getAllByBoardId(boardId: number) : Observable<any> {
-    return this.get('api/boards/' + boardId + '/posts');
+    console.log('[PostService] getOneById(boardId=', boardId, ')')
+    return this.get('/api/boards/' + boardId + '/posts');
   }
   createOne(newPost: Post) {
-    console.log('createOne: ', newPost)
-    return this.post('api/posts', newPost)
+    console.log('[PostService] createOne(newPost=',newPost,')')
+    return this.post('/api/posts', newPost)
   }
-  updateOne(id: number, newPost: PreloadPost) {
-    console.log('updateOne: ', id, newPost)
-    return this.patch("api/posts/" + id, newPost)
+  updateOne(id: number, newPost: PreloadedPost) {
+    console.log('[PostService] updateOne(id=',id,', newPost=',newPost,')')
+    return this.patch('/api/posts/' + id, newPost)
   }
   deleteOne(id: number) {
-    return this.delete("api/posts/" + id)
+    console.log('[PostService] deleteOne(id=',id,')')
+    return this.delete('/api/posts/' + id)
   }
 
 

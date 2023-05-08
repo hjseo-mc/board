@@ -1,3 +1,4 @@
+{{ testData }}
 <table class="table">
   <thead>
     <tr>
@@ -10,6 +11,7 @@
       <td>{{ post.id }}</td>
       <!-- <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td> -->
       <td (click)="openPost(post.id)">{{ post.title }}</td>
+      <td><button (click)="deletePost(post.id)">delete</button></td>
     </tr>
   </tbody>
 </table>

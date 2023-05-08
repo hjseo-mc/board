@@ -10,10 +10,12 @@ export class ApiGatewayService {
   constructor(private http: HttpClient) { }
 
   get(url: string): Observable<any> {
+    console.log('[ApiGatewayService] get(url=', url, ')')
     return this.http.get(url);
   }
 
   post(url: string, data: any): Observable<any>  {
+    console.log('[ApiGatewayService] post(url=', url, ', data=', data, ')')
     return this.http.post(url, data);
   }
 
@@ -22,6 +24,7 @@ export class ApiGatewayService {
   }
 
   patch(url:string, data: any): Observable<any>  {
+    console.log('[ApiGatewayService] patch(url=', url, ', data=', data, ')')
     return this.http.patch(url, data);
   }
 

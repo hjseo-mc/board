@@ -15,12 +15,15 @@ interface PreviewPost {
 export class PostListComponent implements OnInit {
 
   boardId! : number
+  testData!: any
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private postService: PostService
-  ) { }
+  ) {
+    this.testData = route.snapshot.data[0]['title'];
+  }
 
   @Input() data: any;
   @Output() test: any = new EventEmitter();
@@ -30,20 +33,23 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       this.boardId = param.boardId;
-      console.log(this.boardId)
     })
     this.postService.getAllByBoardId(this.boardId).toPromise()
       .then((list: PreviewPost[]) => {this.posts = list})
       .catch((error: any) => console.log(error))
   }
   openPost(id: number) : any {
-    console.log(id)
-    console.log(this.boardId)
     this.router.navigate(['','boards',this.boardId,'posts', id, 'view'])
   }
   createPost() : any {
-    console.log(this.boardId)
     this.router.navigate(['','boards',this.boardId,'posts','new'])
+      .catch((error: any) => console.log(error))
+  }
+  deletePost(id: number) : any {
+    this.postService.deleteOne(id).toPromise()
+      .then(() => {
+        this.posts = this.posts.filter((post: PreviewPost) => post.id !== id)
+      })
       .catch((error: any) => console.log(error))
   }
 }

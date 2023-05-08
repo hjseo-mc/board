@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router, RouterModule} from "@angular/router";
 import {PostService} from "../../../service/post.service";
-import {PreloadPost} from "../../../model/Post";
+import {PreloadedPost} from "../../../model/Post";
 
 @Component({
   selector: 'app-post',
@@ -10,25 +10,25 @@ import {PreloadPost} from "../../../model/Post";
 })
 export class PostViewComponent implements OnInit {
 
+  testData!: any
+  post!: PreloadedPost
+
   constructor(
     private postService: PostService,
     private router: Router,
     private route: ActivatedRoute
-  ) { }
-
-  post!: PreloadPost
-
-  ngOnInit(): void {
+  ) {
+    this.testData = route.snapshot.data[0]['title'];
     this.route.params.subscribe((params)=> {
       const postId = params.postId;
-      this.postService.getOneById(postId).toPromise()
-        .then((post: PreloadPost) => {
-          console.log(post)
-          this.post = post
-        })
-        .catch((error: any) => console.log(error))
-    });
-    console.log(this.post);
+      this.postService.getOneById(postId).subscribe((post: PreloadedPost) => {
+        this.post = post;
+        console.log("post: ", this.post)
+      })
+    })
+  }
+
+  ngOnInit(): void {
   }
 
   edit() {

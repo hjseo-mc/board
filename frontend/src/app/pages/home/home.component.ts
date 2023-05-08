@@ -11,13 +11,14 @@ import {Board} from "../../model/Board";
 export class HomeComponent implements OnInit {
 
   boards: Board[] = []
+  testData!: any
 
   constructor(
       private router: Router,
       private route: ActivatedRoute,
       private boardService: BoardService
   ) {
-
+    this.testData = route.snapshot.data[0]['title'];
   }
 
   ngOnInit(): void {
@@ -27,7 +28,7 @@ export class HomeComponent implements OnInit {
   }
 
   openBoard(id?: number) : any {
-    this.router.navigate(['','boards', id], {relativeTo: this.route})
+    this.router.navigate(['','boards', id], { relativeTo: this.route })
   }
   createBoard() : any {
     const board =  {
@@ -35,7 +36,7 @@ export class HomeComponent implements OnInit {
       description: "New Board Description"
     }
     this.boardService.createOne(board).toPromise().then((data: any) => {
-      this.router.navigate(['','boards', data.id], {relativeTo: this.route})
+      this.router.navigate(['','boards', data.id], { relativeTo: this.route })
     })
   }
 }

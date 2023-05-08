@@ -4,11 +4,11 @@ export interface Post {
   boardId: number
 }
 
-export interface PreloadPost extends Post {
+export interface PreloadedPost extends Post {
   id: number
 }
 
-export const MockPosts: PreloadPost[] = [
+export const MockPosts: PreloadedPost[] = [
   {
     id: 1,
     title: "title1",

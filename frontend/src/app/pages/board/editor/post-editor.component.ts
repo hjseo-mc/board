@@ -3,7 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {map} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "../../../service/post.service";
-import {Post, PreloadPost} from "../../../model/Post";
+import {Post, PreloadedPost} from "../../../model/Post";
 
 @Component({
   selector: 'app-editor',
@@ -23,9 +23,10 @@ export class PostEditorComponent implements OnInit {
     protected fb: FormBuilder
   ) {}
 
-  initForm(preLoadedPost?: PreloadPost): void {
-    const title = preLoadedPost?.title || '';
-    const content = preLoadedPost?.content || '';
+  initForm(preLoadedPost?: PreloadedPost): void {
+    const title = preLoadedPost?.title;
+    const content = preLoadedPost?.content;
+    console.log("preloaded: ", preLoadedPost)
 
     this.editorForm = this.fb.group({
       title: new FormControl(title, [Validators.required]),
@@ -41,8 +42,11 @@ export class PostEditorComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe((param) => {
       this.postId = param.postId;
+      console.log("postId: ", this.postId)
       this.boardId = param.boardId;
-      if (this.postId) { this.initForm(this.getPostData(this.postId)) }
+      console.log("boardId: ", this.boardId)
+      const preloadedPost: PreloadedPost = this.getPostData(this.postId);
+      if (this.postId) { this.initForm(preloadedPost) }
       else { this.initForm() }
     })
 
@@ -56,14 +60,18 @@ export class PostEditorComponent implements OnInit {
   submit(){
     const { title, content, boardId } = this.editorForm.controls;
 
-    const values = {
+    const values : Post = {
       title: title.value.trim(),
       content: content.value.trim(),
-      boardId: boardId.value.trim(),
+      boardId: this.boardId
     };
 
     if (this.postId) {
-      this.postService.updateOne(this.postId, { id: this.postId, ...values })
+      this.postService.updateOne(this.postId, {id: this.postId, ...values})
+        .subscribe((data) => {
+          this.postId = data.id;
+          this.router.navigate(['','boards', this.boardId, 'posts', this.postId, 'view'])
+        });
     }
     else {
       this.postService.createOne(values).subscribe((data) => {
@@ -74,11 +82,15 @@ export class PostEditorComponent implements OnInit {
 
   }
 
-  getPostData(id: number): PreloadPost {
+  getPostData(id: number): PreloadedPost {
     let preLoadedPost: {} = {};
     this.postService.getOneById(id).toPromise()
-      .then(data => preLoadedPost = data)
+      .then(data =>  {
+        preLoadedPost = data;
+        console.log("bf preLoadedPost: ", preLoadedPost)
+      })
       .catch(error => console.log(error))
-    return <PreloadPost>preLoadedPost;
+    console.log("af preLoadedPost: ", preLoadedPost)
+    return <PreloadedPost>preLoadedPost;
   }
 }

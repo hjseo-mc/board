@@ -6,12 +6,12 @@ import {NgModule} from "@angular/core";
 export const MainLayoutRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent, data: {title: 'Home'},
+    component: HomeComponent, data: [{title: 'Home'}],
     loadChildren: () => import('../../pages/home/home.module')
       .then(m => m.HomeModule)
   },
   {
-    path: 'boards/:boardId',
+    path: 'boards/:boardId', data: [{title: 'Board'}],
     loadChildren: () => import('../../pages/board/board.module')
       .then(m => m.BoardModule)
   },

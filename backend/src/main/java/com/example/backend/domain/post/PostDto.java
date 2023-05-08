@@ -9,13 +9,12 @@ import lombok.Getter;
 import java.io.Serializable;
 
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 public class PostDto implements Serializable {
     private Integer id;
-    private String title;
-    private String content;
-    private Integer boardId;
+    private final String title;
+    private final String content;
+    private final Integer boardId;
 }
 
 
