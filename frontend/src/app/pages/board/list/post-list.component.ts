@@ -14,7 +14,7 @@ interface PreviewPost {
 })
 export class PostListComponent implements OnInit {
 
-  boardId! : number
+  @Input() boardId!: number;
   testData!: any
 
   constructor(

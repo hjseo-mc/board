@@ -21,18 +21,22 @@ export class NavbarComponent implements OnInit {
 
 
   isLogin: boolean = false;
+  user!: string;
   @Output() logInOut: any = new EventEmitter<boolean>();
+
   constructor(private router: Router) { }
   ngOnInit() {
   }
 
   loginEvent() {
     this.isLogin = true;
+    this.user = "User1";
     this.logInOut.emit("User1");
   }
 
   logoutEvent() {
     this.isLogin = false;
+    this.user = "";
     this.logInOut.emit();
   }
 }

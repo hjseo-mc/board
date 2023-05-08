@@ -4,6 +4,7 @@ import {map} from "rxjs/operators";
 import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "../../../service/post.service";
 import {Post, PreloadedPost} from "../../../model/Post";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-editor',
@@ -21,45 +22,43 @@ export class PostEditorComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     protected fb: FormBuilder
-  ) {}
+  ) { }
 
   initForm(preLoadedPost?: PreloadedPost): void {
     const title = preLoadedPost?.title;
     const content = preLoadedPost?.content;
-    console.log("preloaded: ", preLoadedPost)
-
+    console.log("title: ", title)
+    console.log("content: ", content)
     this.editorForm = this.fb.group({
       title: new FormControl(title, [Validators.required]),
       content: new FormControl(content, [Validators.required]),
       boardId: [this.boardId, Validators.required]
     });
-
     if (preLoadedPost) {
       this.editorForm.addControl('postId', new FormControl(preLoadedPost.id));
     }
   }
 
   ngOnInit(): void {
+    this.route.parent?.params.subscribe((param) => {
+      this.boardId = param.boardId;
+      console.log("boardId: ", this.boardId)
+    })
     this.route.params.subscribe((param) => {
       this.postId = param.postId;
       console.log("postId: ", this.postId)
-      this.boardId = param.boardId;
-      console.log("boardId: ", this.boardId)
-      const preloadedPost: PreloadedPost = this.getPostData(this.postId);
-      if (this.postId) { this.initForm(preloadedPost) }
+    })
+    this.getPostData(this.postId).toPromise().then((data: PreloadedPost) => {
+      if (this.postId) { this.initForm(data) }
       else { this.initForm() }
     })
-
     this.editorForm.valueChanges.pipe(
-      map((value) => {
-        return value;
-      })
+      map((value) => value)
     ).subscribe();
   }
 
   submit(){
     const { title, content, boardId } = this.editorForm.controls;
-
     const values : Post = {
       title: title.value.trim(),
       content: content.value.trim(),
@@ -82,15 +81,8 @@ export class PostEditorComponent implements OnInit {
 
   }
 
-  getPostData(id: number): PreloadedPost {
+  getPostData(id: number): Observable<PreloadedPost> {
     let preLoadedPost: {} = {};
-    this.postService.getOneById(id).toPromise()
-      .then(data =>  {
-        preLoadedPost = data;
-        console.log("bf preLoadedPost: ", preLoadedPost)
-      })
-      .catch(error => console.log(error))
-    console.log("af preLoadedPost: ", preLoadedPost)
-    return <PreloadedPost>preLoadedPost;
+    return this.postService.getOneById(id);
   }
 }

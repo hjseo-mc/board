@@ -2,6 +2,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "../../pages/home/home.component";
 import {PostListComponent} from "../../pages/board/list/post-list.component";
 import {NgModule} from "@angular/core";
+import {BoardComponent} from "../../pages/board/board.component";
 
 export const MainLayoutRoutes: Routes = [
   {
@@ -12,6 +13,7 @@ export const MainLayoutRoutes: Routes = [
   },
   {
     path: 'boards/:boardId', data: [{title: 'Board'}],
+    component: BoardComponent,
     loadChildren: () => import('../../pages/board/board.module')
       .then(m => m.BoardModule)
   },

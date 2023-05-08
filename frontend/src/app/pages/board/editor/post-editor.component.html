@@ -1,9 +1,22 @@
-<form [formGroup]="editorForm" (ngSubmit)="submit()">
-  <fieldset class="mb-2">
-    <p class="control">
-      title: <input class="input" type="text" formControlName="title" [value]="'title'">
-    </p>
-    content: <input type="text" formControlName="content" [value]="'content'">
-  </fieldset>
-  <button type="submit">submit</button>
-</form>
+<div>
+
+  <div class="title">
+    <h3>#{{ postId }}</h3>
+  </div>
+
+  <form [formGroup]="editorForm" (ngSubmit)="submit()">
+
+    <fieldset class="mb-2">
+      <p class="control mb-2">
+        <input class="input" type="text" formControlName="title" [value]="'title'" placeholder="title">
+      </p>
+      <p class="control">
+        <input class="textarea" type="text" formControlName="content" [value]="'content'" placeholder="content">
+      </p>
+    </fieldset>
+
+    <button class="button" type="submit">submit</button>
+
+  </form>
+
+</div>

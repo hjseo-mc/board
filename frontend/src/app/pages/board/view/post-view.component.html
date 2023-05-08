@@ -1,6 +1,16 @@
-{{ testData }}
-<br>
-<p>{{ post?.title }}</p>
-<p>{{ post?.content }}</p>
+<div>
+  <div class="card mt-3">
+    <div class="card-header">
+      <h3 class="card-header-title">{{ post?.title }}</h3>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        {{ post?.content }}
+      </div>
+    </div>
+  </div>
+</div>
 
-<button (click)="edit()">edit</button>
+<div class="mt-3">
+  <button class="button" (click)="edit()">edit</button>
+</div>

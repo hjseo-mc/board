@@ -10,10 +10,14 @@ import {PostListComponent} from "./list/post-list.component";
 import {PostEditorComponent} from "./editor/post-editor.component";
 import {PostViewComponent} from "./view/post-view.component";
 import {PostEditorModule} from "./editor/post-editor.module";
+import {TitleComponent} from "./title/title.component";
+import {BoardComponent} from "./board.component";
 
 
 @NgModule({
   declarations: [
+    BoardComponent,
+    TitleComponent,
     PostListComponent,
     PostViewComponent,
   ],

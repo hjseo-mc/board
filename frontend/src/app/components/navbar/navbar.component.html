@@ -1,10 +1,18 @@
-<nav class="navbar">
+<div class="navbar">
   <div class="navbar-menu">
     <div class="navbar-start">
       <a class="navbar-item" href="#">Home</a>
-      <a class="navbar-item" (click)="isLogin ? logoutEvent() : loginEvent()">
-        {{ isLogin ? 'Logout' : 'Login' }}
-      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">{{ user }}</div>
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="navbar-item" (click)="isLogin ? logoutEvent() : loginEvent()">
+            {{ isLogin ? 'Logout' : 'Login' }}
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
+</div>

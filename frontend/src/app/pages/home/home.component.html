@@ -1,6 +1,18 @@
-<div>{{ testData }}</div>
-<ul>
-  <li *ngFor="let board of boards"><a (click)="openBoard(board.id)">{{ board.title }}</a></li>
-</ul>
+<div>
 
-<button (click)="createBoard()">create</button>
+  <div class="title">
+    <h2>{{ testData }}</h2>
+  </div>
+
+<div class="box">
+  <div class="menu-list">
+    <ul>
+      <li *ngFor="let board of boards"><a (click)="openBoard(board.id)">{{ board.title }}</a></li>
+    </ul>
+  </div>
+</div>
+
+  <div class="m-t-5">
+    <button class="button" (click)="createBoard()">create</button>
+  </div>
+</div>

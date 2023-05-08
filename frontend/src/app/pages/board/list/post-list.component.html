@@ -1,20 +1,29 @@
-{{ testData }}
-<table class="table">
-  <thead>
-    <tr>
-      <th>num</th>
-      <th>title</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let post of posts; let i = index">
-      <td>{{ post.id }}</td>
-      <!-- <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td> -->
-      <td (click)="openPost(post.id)">{{ post.title }}</td>
-      <td><button (click)="deletePost(post.id)">delete</button></td>
-    </tr>
-  </tbody>
-</table>
+<div>
 
-<button (click)="createPost()">create</button>
+  <table class="table is-fixed-layout is-fullwidth is-8">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>title</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let post of posts; let i = index">
+        <td>{{ post.id }}</td>
+        <!-- <td [routerLink]="['/post/'+item.num]">{{ item.title }}</td> -->
+        <td (click)="openPost(post.id)">{{ post.title }}</td>
+        <td>
+          <button class="button is-danger is-small" (click)="deletePost(post.id)">
+            <span class="icon is-small">
+              <i class="fas fa-times"></i>
+            </span>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
+  <button class="button m-t-3" (click)="createPost()">create</button>
+
+</div>
